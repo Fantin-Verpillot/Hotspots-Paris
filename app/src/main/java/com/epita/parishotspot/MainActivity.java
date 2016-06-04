@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String[] values = new String[] {"Donut"
             , "Eclair" , "Froyo", "Gingerbread", "Honeycomb", "Ice Cream Sandwich",
-            "Jelly Bean", "Kit Kat", "Lollipop", "Marshmallow"];
+            "Jelly Bean", "Kit Kat", "Lollipop", "Marshmallow"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
