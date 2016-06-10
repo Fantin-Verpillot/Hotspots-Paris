@@ -7,21 +7,24 @@ import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
 
-
-    private TextView textViewItemName;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
         //Init values
-        textViewItemName = (TextView) findViewById(R.id.textViewItemName);
+        TextView textViewDistrict = (TextView) findViewById(R.id.district);
+        TextView textViewAddress = (TextView) findViewById(R.id.address);
+        TextView textViewName = (TextView) findViewById(R.id.name);
+        TextView textViewCode = (TextView) findViewById(R.id.code);
 
         //Getting intent
         Intent intent = getIntent();
 
         //Displaying values
-        textViewItemName.setText(intent.getStringExtra("key_item_name"));
+        textViewDistrict.setText(intent.getStringExtra("key_item_name"));
+        textViewAddress.setText(intent.getStringExtra("key_item_name"));
+        textViewName.setText(intent.getStringExtra("key_item_name"));
+        textViewCode.setText(intent.getStringExtra("key_item_name"));
     }
 }
