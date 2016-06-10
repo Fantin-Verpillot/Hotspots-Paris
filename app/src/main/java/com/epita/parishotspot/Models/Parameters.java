@@ -1,11 +1,12 @@
-package com.epita.parishotspot.Model;
+package com.epita.parishotspot.Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Parameters {
+public class Parameters implements Serializable {
 
     @SerializedName("dataset")
     @Expose
