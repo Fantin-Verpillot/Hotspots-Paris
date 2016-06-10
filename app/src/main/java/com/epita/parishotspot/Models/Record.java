@@ -1,11 +1,11 @@
-package com.epita.parishotspot.Model;
+package com.epita.parishotspot.Models;
 
-import com.epita.parishotspot.Model.Fields;
-import com.epita.parishotspot.Model.Geometry;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Record {
+import java.io.Serializable;
+
+public class Record implements Serializable {
 
     @SerializedName("datasetid")
     @Expose

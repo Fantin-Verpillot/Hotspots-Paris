@@ -3,7 +3,10 @@ package com.epita.parishotspot;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
+
+import com.epita.parishotspot.Models.Record;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -18,10 +21,11 @@ public class DetailActivity extends AppCompatActivity {
         //Init values
         textViewItemName = (TextView) findViewById(R.id.textViewItemName);
 
-        //Getting intent
-        Intent intent = getIntent();
+        //Getting record
+        Record record = (Record) getIntent().getSerializableExtra("record");
 
         //Displaying values
-        textViewItemName.setText(intent.getStringExtra("key_item_name"));
+        textViewItemName.setText(record.getFields().getNomSite());
+
     }
 }

@@ -11,26 +11,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.epita.parishotspot.Model.Hotspot;
+import com.epita.parishotspot.Models.Hotspot;
+import com.epita.parishotspot.Models.Record;
 
-import java.util.List;
-
-//import retrofit2.Call;
-//import retrofit2.Callback;
-//import retrofit2.Response;
-//import retrofit2.Retrofit;
-//import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener {
 
     private ListView listView;
-
-    String[] values = new String[]{"Donut"
-            , "Eclair", "Froyo", "Gingerbread", "Honeycomb", "Ice Cream Sandwich",
-            "Jelly Bean", "Kit Kat", "Lollipop", "Marshmallow"};
-
-//    private List<Hotspot> hotspots;
+    private Hotspot hotspots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,49 +32,49 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         setContentView(R.layout.activity_main);
 
         listView = (ListView) findViewById(R.id.list);
-
-//        getHotspots();
-
-        showList();
+        getHotspots();
 
         //Setting onItemClickListener to listview
         listView.setOnItemClickListener(this);
     }
 
-//    private void getHotspots() {
-//        final ProgressDialog loading = ProgressDialog.show(this, "Fetching Data", "Please wait...", false, false);
-//
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(HotspotService.ENDPOINT)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        HotspotService service = retrofit.create(HotspotService.class);
-//
-//        Call<List<Hotspot>> call = service.getHotspots();
-//
-//        call.enqueue(new Callback<List<Hotspot>>() {
-//            @Override
-//            public void onResponse(Call<List<Hotspot>> call, Response<List<Hotspot>> response) {
-//                loading.dismiss();
-//
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Hotspot>> call, Throwable t) {
-//                Toast.makeText(getApplicationContext(), String.format("Cannot retrieve hotspot list"), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
+    private void getHotspots() {
+        final ProgressDialog loading = ProgressDialog.show(this, "Fetching Data", "Please wait...", false, false);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HotspotService.ENDPOINT)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        HotspotService service = retrofit.create(HotspotService.class);
+        Call<Hotspot> call = service.getHotspots();
+
+        call.enqueue(new Callback<Hotspot>() {
+            @Override
+            public void onResponse(Call<Hotspot> call, Response<Hotspot> response) {
+                loading.dismiss();
+                hotspots = response.body();
+                showList();
+            }
+
+            @Override
+            public void onFailure(Call<Hotspot> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), String.format("Cannot retrieve hotspot list"), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 
     private void showList() {
 
-//        String[] values = new String[hotspots.size()];
+        String[] values = new String[hotspots.getRecords().size()];
 
+        for (int i = 0; i < hotspots.getRecords().size(); ++i) {
+            values[i] = hotspots.getRecords().get(i).getFields().getNomSite() == null ? "" : hotspots.getRecords().get(i).getFields().getNomSite();
+        }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+                android.R.layout.simple_list_item_1, values);
 
         listView.setAdapter(adapter);
 
@@ -91,11 +85,11 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
         Intent intent = new Intent(this, DetailActivity.class);
 
-        //Getting the requested book from the list
-//        Book book = books.get(position);
+//      Getting the requested record from the list
+        Record record = hotspots.getRecords().get(pos);
 
         //Adding info about hotspot
-        intent.putExtra("key_item_name", values[pos]);
+        intent.putExtra("record", record);
 
         //Starting another activity to show book details
         startActivity(intent);
