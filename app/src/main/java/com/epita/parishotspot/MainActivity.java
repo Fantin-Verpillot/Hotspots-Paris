@@ -61,6 +61,11 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        if (id == R.id.action_refresh) {
+            getHotspots();
+            return true;
+        }
+
         if (id == R.id.action_search) {
             return true;
         }
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             startActivity(intent);
             return true;
         }
+
 
 
         return super.onOptionsItemSelected(item);
@@ -96,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
             @Override
             public void onFailure(Call<Hotspot> call, Throwable t) {
+                loading.dismiss();
                 Toast.makeText(getApplicationContext(), String.format("Cannot retrieve hotspot list"), Toast.LENGTH_SHORT).show();
             }
         });
