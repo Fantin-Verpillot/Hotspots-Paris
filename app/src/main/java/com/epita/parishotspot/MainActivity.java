@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
 
-        Intent intent = new Intent(this, DetailActivity.class);
+        Intent intent = new Intent(this, SwapActivity.class);
 
 //      Getting the requested record from the list
         Record record = hotspots.getRecords().get(pos);

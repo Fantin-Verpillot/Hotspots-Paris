@@ -3,4 +3,5 @@
     <string name="googleapi">Google Maps</string>
     <string name="district_label">Quartier : </string>
     <string name="address_label">Adresse : </string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>
