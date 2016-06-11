@@ -13,26 +13,26 @@ import android.widget.TextView;
 
 import com.epita.parishotspot.Models.Record;
 
-public class PlaceholderFragment extends Fragment {
+public class DetailFragment extends Fragment {
 
     Record recordData;
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    public static PlaceholderFragment newInstance(int sectionNumber) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
+    public static DetailFragment newInstance(int sectionNumber) {
+        DetailFragment fragment = new DetailFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public PlaceholderFragment() {
+    public DetailFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
         Log.i("NUMBER", String.valueOf(getArguments().getInt(ARG_SECTION_NUMBER)));
         TextView textView = (TextView) rootView.findViewById(R.id.section_label);

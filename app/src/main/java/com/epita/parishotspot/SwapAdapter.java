@@ -12,7 +12,7 @@ public class SwapAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return PlaceholderFragment.newInstance(position + 1);
+        return DetailFragment.newInstance(position + 1);
     }
 
     @Override
