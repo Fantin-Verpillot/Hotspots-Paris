@@ -10,13 +10,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.epita.parishotspot.Models.Hotspot;
 import com.epita.parishotspot.Models.Record;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,12 +39,49 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     private static Hotspot hotspots;
     private Toolbar toolbar;
 
+    private ArrayList<Map<String, String>> values;
+    private SimpleAdapter adapter;
+    private int curPos;
+    private boolean flagLoading;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         listView = (ListView) findViewById(R.id.list);
+        curPos = 0;
+        values = new ArrayList<Map<String, String>>();
+        adapter = new SimpleAdapter(this,
+                values,
+                android.R.layout.simple_list_item_2,
+                new String[] {"Nom site", "Adresse"},
+                new int[] {android.R.id.text1, android.R.id.text2});
+
+        listView.setAdapter(adapter);
+        flagLoading = false;
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+
+                if (hotspots != null && values.size() < hotspots.getRecords().size()) {
+                    if (i + i1 == i2 && i2 != 0) {
+                        if (!flagLoading) {
+                            flagLoading = true;
+                            showList();
+                        }
+                    }
+                }
+
+            }
+        });
+
         getHotspots();
 
         //Setting onItemClickListener to listview
@@ -109,19 +154,17 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     }
 
+    /* Show 10 elements */
     private void showList() {
-
-        String[] values = new String[hotspots.getRecords().size()];
-
-        for (int i = 0; i < hotspots.getRecords().size(); ++i) {
-            values[i] = hotspots.getRecords().get(i).getFields().getNomSite() == null ? "" : hotspots.getRecords().get(i).getFields().getNomSite();
+        flagLoading = false;
+        for (int i = 0; i < 10 && curPos < hotspots.getRecords().size(); ++i, ++curPos) {
+            Map<String, String> elt = new HashMap<String, String>(2);
+            elt.put("Nom site", (hotspots.getRecords().get(i).getFields().getNomSite()));
+            elt.put("Adresse", hotspots.getRecords().get(i).getFields().getAdresse());
+            values.add(elt);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, values);
-
-        listView.setAdapter(adapter);
-
+        adapter.notifyDataSetChanged();
     }
 
     @Override
