@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener {
 
     private ListView listView;
-    private Hotspot hotspots;
+    private static Hotspot hotspots;
     private Toolbar toolbar;
 
     @Override
@@ -134,9 +134,16 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
         //Adding info about hotspot
         intent.putExtra("record", record);
+        intent.putExtra("recordPos", pos);
 
         //Starting another activity to show book details
         startActivity(intent);
+    }
 
+    public static Record getRecord(int pos) {
+        if (pos < 0 || pos > hotspots.getRecords().size() - 1)
+            return null;
+
+        return hotspots.getRecords().get(pos);
     }
 }
