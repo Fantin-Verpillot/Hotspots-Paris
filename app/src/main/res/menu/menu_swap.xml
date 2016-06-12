@@ -5,20 +5,14 @@
     tools:context=".SwapActivity">
 
     <item
-        android:id="@+id/action_refresh"
-        android:title="Refresh"
-        android:icon="@drawable/ic_refresh_white_24dp"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_search"
-        android:title="Search"
-        android:icon="@drawable/ic_search_white_24dp"
+        android:id="@+id/action_share"
+        android:title="@string/share_title"
+        android:icon="@drawable/ic_share_white_24dp"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_info"
-        android:title="Info"
+        android:title="@string/info_title"
         android:icon="@drawable/ic_info_white_24dp"
         app:showAsAction="ifRoom" />
 
