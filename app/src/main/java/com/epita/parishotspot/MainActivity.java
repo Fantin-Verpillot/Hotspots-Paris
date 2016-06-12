@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     }
 
     private void getHotspots() {
-        final ProgressDialog loading = ProgressDialog.show(this, "Fetching Data", "Please wait...", false, false);
+        final ProgressDialog loading = ProgressDialog.show(this, "Récupération des données", "Veuillez patienter...", false, false);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(HotspotService.ENDPOINT)

@@ -6,10 +6,16 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.epita.parishotspot.Models.Record;
+
 public class SwapActivity extends AppCompatActivity {
+
+    private static String shareDescription;
+    private SwapAdapter swapAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +27,7 @@ public class SwapActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Create the adapter that will return a fragment for each of the three primary sections of the activity.
-        SwapAdapter swapAdapter = new SwapAdapter(getSupportFragmentManager());
+        swapAdapter = new SwapAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         ViewPager viewPager = (ViewPager) findViewById(R.id.container);
@@ -41,6 +47,12 @@ public class SwapActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            DetailFragment fragment = (DetailFragment) swapAdapter.getCurrentFragment();
+            sendIntent.putExtra(Intent.EXTRA_TEXT, fragment.getShareDescription());
+            sendIntent.setType("text/plain");
+            startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.share_with_label)));
             return true;
         }
 
@@ -50,7 +62,10 @@ public class SwapActivity extends AppCompatActivity {
             return true;
         }
 
-
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void setShareDescription(String description) {
+        shareDescription = description;
     }
 }
