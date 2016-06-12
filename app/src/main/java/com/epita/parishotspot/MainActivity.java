@@ -172,8 +172,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         flagLoading = false;
         for (int i = 0; i < 10 && curPos < hotspots.getRecords().size(); ++i, ++curPos) {
             Map<String, String> elt = new HashMap<String, String>(2);
-            elt.put("Nom site", (hotspots.getRecords().get(i).getFields().getNomSite()));
-            elt.put("Adresse", hotspots.getRecords().get(i).getFields().getAdresse());
+            elt.put("Nom site", (hotspots.getRecords().get(curPos).getFields().getNomSite()));
+            elt.put("Adresse", hotspots.getRecords().get(curPos).getFields().getAdresse());
             values.add(elt);
         }
 
