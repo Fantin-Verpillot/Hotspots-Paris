@@ -146,4 +146,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
         return hotspots.getRecords().get(pos);
     }
+
+    public static int countRecords() {
+        return hotspots.getRecords().size();
+    }
 }
