@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,10 +33,6 @@ public class DetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
-        Log.i("NUMBER", String.valueOf(getArguments().getInt(ARG_SECTION_NUMBER)));
-        TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-        textView.setText(String.valueOf(getArguments().getInt(ARG_SECTION_NUMBER)));
-
         //Init view elements
         TextView textViewName = (TextView) rootView.findViewById(R.id.name);
         TextView textViewCode = (TextView) rootView.findViewById(R.id.code);
@@ -45,7 +40,7 @@ public class DetailFragment extends Fragment {
         TextView textViewDistrict = (TextView) rootView.findViewById(R.id.district);
 
         //Getting record
-        recordData = (Record) getActivity().getIntent().getSerializableExtra("record");
+        recordData = MainActivity.getRecord(getArguments().getInt(ARG_SECTION_NUMBER) - 1);
 
         //Displaying values
         textViewName.setText(recordData.getFields().getNomSite());

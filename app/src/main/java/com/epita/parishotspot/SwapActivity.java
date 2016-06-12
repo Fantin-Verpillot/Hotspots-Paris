@@ -17,5 +17,6 @@ public class SwapActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         ViewPager viewPager = (ViewPager) findViewById(R.id.container);
         viewPager.setAdapter(swapAdapter);
+        viewPager.setCurrentItem((Integer) getIntent().getSerializableExtra("recordPos"));
     }
 }

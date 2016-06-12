@@ -17,6 +17,6 @@ public class SwapAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return  MainActivity.countRecords();
     }
 }
