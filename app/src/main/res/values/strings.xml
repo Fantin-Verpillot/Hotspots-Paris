@@ -3,8 +3,6 @@
     <string name="googleapi">Google Maps</string>
     <string name="district_label">Quartier : </string>
     <string name="address_label">Adresse : </string>
-    <string name="student1">Eng Philippe (eng_p)</string>
-    <string name="student2">Verpillot Fantin (verpil_f)</string>
 
     <string name="search_hint">Search hotspot (name, address)</string>
     <string name="app_label">Search bar</string>
@@ -13,4 +11,6 @@
     <string name="refresh_title">Refresh</string>
     <string name="info_title">Info</string>
 
+    <string name="student1">Philippe ENG (eng_p)</string>
+    <string name="student2">Fantin VERPILLOT (verpil_f)</string>
 </resources>

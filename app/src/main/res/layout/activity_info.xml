@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/student1"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:text="@string/student1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/student2"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:text="@string/student2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
