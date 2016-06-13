@@ -4,7 +4,7 @@
     <string name="district_label">Quartier :&#160;</string>
     <string name="address_label">Adresse :&#160;</string>
 
-    <string name="search_hint">Rechercher un hotspot (libellé, adresse)</string>
+    <string name="search_hint">Rechercher (libellé, adresse)</string>
     <string name="app_label">Barre de recherche</string>
 
     <string name="search_title">Rechercher</string>
