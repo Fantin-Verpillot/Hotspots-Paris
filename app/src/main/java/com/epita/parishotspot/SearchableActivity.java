@@ -89,7 +89,7 @@ public class SearchableActivity extends AppCompatActivity implements ListView.On
         Intent intent = new Intent(this, SwapActivity.class);
 
 //      Getting the requested record from the list
-        Record record = MainActivity.getRecords().get(pos);
+        Record record = records.get(pos);
 
         //Adding info about hotspot
         intent.putExtra("record", record);
