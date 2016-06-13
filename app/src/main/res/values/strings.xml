@@ -4,7 +4,7 @@
     <string name="district_label">Quartier : </string>
     <string name="address_label">Adresse : </string>
 
-    <string name="search_hint">Search hotspot (name, address)</string>
+    <string name="search_hint">Search hotspot</string>
     <string name="app_label">Search bar</string>
 
     <string name="search_title">Search</string>
