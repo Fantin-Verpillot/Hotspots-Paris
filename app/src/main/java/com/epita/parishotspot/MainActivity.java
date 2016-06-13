@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         //Setting onItemClickListener to listview
         listView.setOnItemClickListener(this);
 
-        toolbar = (Toolbar) findViewById(R.id.main_toolbar); // Attaching the layout to the toolbar object
+        toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
     }
