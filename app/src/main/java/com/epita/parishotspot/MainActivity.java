@@ -27,6 +27,7 @@ import com.epita.parishotspot.Models.Record;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -60,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                 android.R.layout.simple_list_item_2,
                 new String[] {"Nom site", "Adresse"},
                 new int[] {android.R.id.text1, android.R.id.text2});
-
         listView.setAdapter(adapter);
         flagLoading = false;
 
@@ -205,5 +205,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     public static int countRecords() {
         return hotspots.getRecords().size();
+    }
+
+    public static List<Record> getRecords() {
+        return hotspots.getRecords();
     }
 }
