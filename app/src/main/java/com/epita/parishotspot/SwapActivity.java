@@ -14,7 +14,6 @@ import com.epita.parishotspot.Models.Record;
 
 public class SwapActivity extends AppCompatActivity {
 
-    private static String shareDescription;
     private SwapAdapter swapAdapter;
 
     @Override
@@ -25,6 +24,10 @@ public class SwapActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         // Create the adapter that will return a fragment for each of the three primary sections of the activity.
         swapAdapter = new SwapAdapter(getSupportFragmentManager());
@@ -62,10 +65,10 @@ public class SwapActivity extends AppCompatActivity {
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
-    }
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
 
-    public static void setShareDescription(String description) {
-        shareDescription = description;
+        return super.onOptionsItemSelected(item);
     }
 }
