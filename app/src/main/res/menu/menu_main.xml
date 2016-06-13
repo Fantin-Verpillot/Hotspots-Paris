@@ -3,24 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
-    <item
-        android:id="@+id/action_refresh"
+    <item android:id="@+id/action_refresh"
         android:icon="@drawable/ic_refresh_white_24dp"
         android:title="@string/refresh_title"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/action_search"
+    <item android:id="@+id/action_search"
         android:title="@android:string/search_go"
         android:icon="@drawable/ic_search_white_24dp"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="android.support.v7.widget.SearchView" />
 
-    <item
-        android:id="@+id/action_info"
+    <item android:id="@+id/action_info"
         android:icon="@drawable/ic_info_white_24dp"
         android:title="@string/info_title"
         app:showAsAction="ifRoom" />
-
 
 </menu>

@@ -1,16 +1,19 @@
 <resources>
     <string name="app_name">ParisHotspot</string>
-    <string name="googleapi">Google Maps</string>
+    <string name="googleapi">Voir sur une carte</string>
     <string name="district_label">Quartier : </string>
     <string name="address_label">Adresse : </string>
 
-    <string name="search_hint">Search hotspot</string>
-    <string name="app_label">Search bar</string>
+    <string name="search_hint">Rechercher un hotspot (libellé, adresse)</string>
+    <string name="app_label">Barre de recherche</string>
 
-    <string name="search_title">Search</string>
-    <string name="refresh_title">Refresh</string>
-    <string name="info_title">Info</string>
+    <string name="search_title">Rechercher</string>
+    <string name="refresh_title">Rafraîchir</string>
+    <string name="info_title">Information</string>
+    <string name="share_title">Partager</string>
 
     <string name="student1">Philippe ENG (eng_p)</string>
     <string name="student2">Fantin VERPILLOT (verpil_f)</string>
+
+    <string name="share_with_label">Partager via</string>
 </resources>

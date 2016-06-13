@@ -14,7 +14,8 @@ import com.epita.parishotspot.Models.Record;
 
 public class DetailFragment extends Fragment {
 
-    Record recordData;
+    private Record recordData;
+    private String shareDescription;
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -48,6 +49,11 @@ public class DetailFragment extends Fragment {
         textViewAddress.setText(recordData.getFields().getAdresse());
         textViewDistrict.setText(recordData.getFields().getArrondissement());
 
+        shareDescription =
+                "Hotspot : " + recordData.getFields().getNomSite() + " - "
+                + recordData.getFields().getAdresse() + " "
+                + recordData.getFields().getArrondissement();
+
         //Manage Google Maps Button
         Button button = (Button) rootView.findViewById(R.id.map_button);
         button.setOnClickListener(new View.OnClickListener()
@@ -65,5 +71,9 @@ public class DetailFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    public String getShareDescription() {
+        return shareDescription;
     }
 }
