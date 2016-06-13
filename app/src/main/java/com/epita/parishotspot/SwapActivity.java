@@ -22,6 +22,9 @@ public class SwapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swap);
 
+        // Set "main" or "search" depending on the previous activity
+        listType = (String) getIntent().getSerializableExtra("activity");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
@@ -37,7 +40,6 @@ public class SwapActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) findViewById(R.id.container);
         viewPager.setAdapter(swapAdapter);
         viewPager.setCurrentItem((Integer) getIntent().getSerializableExtra("recordPos"));
-        listType = (String) getIntent().getSerializableExtra("activity");
     }
 
     @Override

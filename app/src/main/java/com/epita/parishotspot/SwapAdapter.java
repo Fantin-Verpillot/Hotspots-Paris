@@ -32,6 +32,10 @@ public class SwapAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return  MainActivity.countRecords();
+        if (SwapActivity.getListType().equals("main")) {
+            return  MainActivity.countRecords();
+        } else {
+            return  SearchableActivity.countRecords();
+        }
     }
 }
