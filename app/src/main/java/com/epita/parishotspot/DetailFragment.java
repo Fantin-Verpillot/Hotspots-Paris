@@ -47,7 +47,11 @@ public class DetailFragment extends Fragment {
         TextView textViewDistrict = (TextView) rootView.findViewById(R.id.district);
 
         //Getting record
-        recordData = MainActivity.getRecord(getArguments().getInt(ARG_SECTION_NUMBER) - 1);
+        if (SwapActivity.getListType().equals("main")) {
+            recordData = MainActivity.getRecord(getArguments().getInt(ARG_SECTION_NUMBER) - 1);
+        } else {
+            recordData = SearchableActivity.getRecord(getArguments().getInt(ARG_SECTION_NUMBER) - 1);
+        }
 
         //Displaying values
         textViewName.setText(recordData.getFields().getNomSite());

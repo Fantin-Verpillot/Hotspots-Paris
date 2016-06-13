@@ -15,6 +15,7 @@ import com.epita.parishotspot.Models.Record;
 public class SwapActivity extends AppCompatActivity {
 
     private SwapAdapter swapAdapter;
+    private static String listType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class SwapActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) findViewById(R.id.container);
         viewPager.setAdapter(swapAdapter);
         viewPager.setCurrentItem((Integer) getIntent().getSerializableExtra("recordPos"));
+        listType = (String) getIntent().getSerializableExtra("activity");
     }
 
     @Override
@@ -43,6 +45,10 @@ public class SwapActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_swap, menu);
         return true;
+    }
+
+    public static String getListType() {
+        return listType;
     }
 
     @Override
