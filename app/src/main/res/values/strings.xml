@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">ParisHotspot</string>
     <string name="googleapi">Voir sur une carte</string>
-    <string name="district_label">Quartier : </string>
-    <string name="address_label">Adresse : </string>
+    <string name="district_label">Quartier :&#160;</string>
+    <string name="address_label">Adresse :&#160;</string>
 
     <string name="search_hint">Rechercher un hotspot (libellé, adresse)</string>
     <string name="app_label">Barre de recherche</string>

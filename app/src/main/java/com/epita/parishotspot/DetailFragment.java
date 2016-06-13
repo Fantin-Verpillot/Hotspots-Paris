@@ -1,6 +1,9 @@
 package com.epita.parishotspot;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,13 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epita.parishotspot.Models.Record;
+
+import java.util.List;
 
 public class DetailFragment extends Fragment {
 
     private Record recordData;
     private String shareDescription;
+    private Context context;
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -36,7 +43,6 @@ public class DetailFragment extends Fragment {
 
         //Init view elements
         TextView textViewName = (TextView) rootView.findViewById(R.id.name);
-        TextView textViewCode = (TextView) rootView.findViewById(R.id.code);
         TextView textViewAddress = (TextView) rootView.findViewById(R.id.address);
         TextView textViewDistrict = (TextView) rootView.findViewById(R.id.district);
 
@@ -45,7 +51,6 @@ public class DetailFragment extends Fragment {
 
         //Displaying values
         textViewName.setText(recordData.getFields().getNomSite());
-        textViewCode.setText(recordData.getFields().getCodeSite());
         textViewAddress.setText(recordData.getFields().getAdresse());
         textViewDistrict.setText(recordData.getFields().getArrondissement());
 
@@ -66,7 +71,15 @@ public class DetailFragment extends Fragment {
                 String url = "http://maps.google.com/maps?q="+ latitude  +"," + longitude +"("+ label + ")&iwloc=A&hl=es";
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-                startActivity(intent);
+
+                //test
+                PackageManager packageManager = getActivity().getPackageManager();
+                List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
+                if (activities.size() > 0) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(v.getContext(), String.format("L'application Google Maps est introuvable"), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
