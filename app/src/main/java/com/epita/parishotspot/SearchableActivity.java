@@ -27,6 +27,7 @@ public class SearchableActivity extends AppCompatActivity implements ListView.On
     private ArrayList<Map<String, String>> values;
     private SimpleAdapter adapter;
     private Toolbar toolbar;
+    private static List<Record> records; //records of the search list
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,9 @@ public class SearchableActivity extends AppCompatActivity implements ListView.On
                 android.R.layout.simple_list_item_2,
                 new String[] {"Nom site", "Adresse"},
                 new int[] {android.R.id.text1, android.R.id.text2});
+        records = new ArrayList<Record>();
         listView.setAdapter(adapter);
-//        listView.setOnItemClickListener(this);
+        listView.setOnItemClickListener(this);
 
 
         toolbar = (Toolbar) findViewById(R.id.search_toolbar); // Attaching the layout to the toolbar object
@@ -92,6 +94,7 @@ public class SearchableActivity extends AppCompatActivity implements ListView.On
         //Adding info about hotspot
         intent.putExtra("record", record);
         intent.putExtra("recordPos", pos);
+        intent.putExtra("activity", "search");
 
         //Starting another activity to show book details
         startActivity(intent);
@@ -100,9 +103,7 @@ public class SearchableActivity extends AppCompatActivity implements ListView.On
     private void doMySearch(String query) {
 
         Log.e("Query info", query);
-
-        List<Record> records = MainActivity.getRecords();
-        for (Record record : records) {
+        for (Record record : MainActivity.getRecords()) {
 
             if ((record.getFields().getAdresse().toLowerCase()).contains(query.toLowerCase())
                     || (record.getFields().getNomSite().toLowerCase()).contains(query.toLowerCase())) {
@@ -111,6 +112,7 @@ public class SearchableActivity extends AppCompatActivity implements ListView.On
                 elt.put("Nom site", (record.getFields().getNomSite()));
                 elt.put("Adresse", (record.getFields().getAdresse()));
                 values.add(elt);
+                records.add(record);
             }
             adapter.notifyDataSetChanged();
         }
@@ -118,6 +120,16 @@ public class SearchableActivity extends AppCompatActivity implements ListView.On
         toolbar = (Toolbar) findViewById(R.id.search_toolbar);
         toolbar.setTitle("Résultats (" + values.size() + ")");
         setSupportActionBar(toolbar);
+    }
+
+    public static Record getRecord(int pos) {
+        if (pos < 0 || pos > records.size() - 1)
+            return null;
+        return records.get(pos);
+    }
+
+    public static int countRecords() {
+        return records.size();
     }
 
 }

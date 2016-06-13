@@ -191,6 +191,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         //Adding info about hotspot
         intent.putExtra("record", record);
         intent.putExtra("recordPos", pos);
+        intent.putExtra("activity", "main");
 
         //Starting another activity to show book details
         startActivity(intent);
